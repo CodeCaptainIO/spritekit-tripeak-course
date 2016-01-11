@@ -12,5 +12,11 @@ enum Suit: String {
   case Clubs
   case Diamonds
   case Hearts
-  case Spaces
+  case Spades
+  static let allValues = [
+    Suit.Clubs,
+    Suit.Diamonds,
+    Suit.Hearts,
+    Suit.Spades
+  ]
 }

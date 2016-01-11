@@ -12,6 +12,7 @@
 		838C57471C442D0800E9C142 /* TRICardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838C57461C442D0800E9C142 /* TRICardModel.swift */; };
 		838C57491C442D8000E9C142 /* TRICard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838C57481C442D8000E9C142 /* TRICard.swift */; };
 		838C574B1C442E5C00E9C142 /* TRIGameSceneLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838C574A1C442E5C00E9C142 /* TRIGameSceneLayout.swift */; };
+		838C574D1C44314B00E9C142 /* TRIGameSetupManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838C574C1C44314B00E9C142 /* TRIGameSetupManager.swift */; };
 		83C077D21C43FE2600CE5AE6 /* Birdy_Note5.wav in Resources */ = {isa = PBXBuildFile; fileRef = 83C077CE1C43FE2600CE5AE6 /* Birdy_Note5.wav */; };
 		83C077D31C43FE2600CE5AE6 /* Birdy_Notification1.wav in Resources */ = {isa = PBXBuildFile; fileRef = 83C077CF1C43FE2600CE5AE6 /* Birdy_Notification1.wav */; };
 		83C077D41C43FE2600CE5AE6 /* cardSlide1.wav in Resources */ = {isa = PBXBuildFile; fileRef = 83C077D01C43FE2600CE5AE6 /* cardSlide1.wav */; };
@@ -69,6 +70,7 @@
 		838C57461C442D0800E9C142 /* TRICardModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TRICardModel.swift; path = ../../../../../../CodeCaptain/Documents/Projects/Tripeak/Shared/Models/TRICardModel.swift; sourceTree = "<group>"; };
 		838C57481C442D8000E9C142 /* TRICard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TRICard.swift; path = ../../../../../../CodeCaptain/Documents/Projects/Tripeak/Shared/Sprites/TRICard.swift; sourceTree = "<group>"; };
 		838C574A1C442E5C00E9C142 /* TRIGameSceneLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TRIGameSceneLayout.swift; path = ../../../../../../CodeCaptain/Documents/Projects/Tripeak/Shared/Layouts/TRIGameSceneLayout.swift; sourceTree = "<group>"; };
+		838C574C1C44314B00E9C142 /* TRIGameSetupManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TRIGameSetupManager.swift; path = ../../../../../../CodeCaptain/Documents/Projects/Tripeak/Shared/Managers/TRIGameSetupManager.swift; sourceTree = "<group>"; };
 		83C077CE1C43FE2600CE5AE6 /* Birdy_Note5.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Birdy_Note5.wav; sourceTree = "<group>"; };
 		83C077CF1C43FE2600CE5AE6 /* Birdy_Notification1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Birdy_Notification1.wav; sourceTree = "<group>"; };
 		83C077D01C43FE2600CE5AE6 /* cardSlide1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = cardSlide1.wav; sourceTree = "<group>"; };
@@ -413,6 +415,7 @@
 		83F642061C34397200CCABB7 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				838C574C1C44314B00E9C142 /* TRIGameSetupManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -567,6 +570,7 @@
 				83C0782A1C44044300CE5AE6 /* ALSoundSourcePool.m in Sources */,
 				838C57471C442D0800E9C142 /* TRICardModel.swift in Sources */,
 				83C078281C44044300CE5AE6 /* ALDevice.m in Sources */,
+				838C574D1C44314B00E9C142 /* TRIGameSetupManager.swift in Sources */,
 				83D8E12C1C43F34E003E84F3 /* TRIBaseOverlay.swift in Sources */,
 				83D8E0C11C43F167003E84F3 /* TRISounds.swift in Sources */,
 				83C0782E1C44044300CE5AE6 /* OALAudioSession.m in Sources */,
