@@ -11,18 +11,13 @@ import SpriteKit
 class TRIGameScene: SKScene {
   
   override func didMoveToView(view: SKView) {
-    let myLabel = SKLabelNode(
-      fontNamed: Fonts.HelveticaNeueLight.rawValue
+    let model = TRICardModel(suit: .Clubs, rank: .Ace)
+    let card = TRICard(cardModel: model)
+    card.position = CGPoint(
+      x: self.size.width / 2,
+      y: self.size.height / 2
     )
-    myLabel.text = "Hello, CodeCaptain!"
-    myLabel.fontSize = 45
-    myLabel.position = CGPoint(
-      x:CGRectGetMidX(self.frame),
-      y:CGRectGetMidY(self.frame)
-    )
-    
-    self.addChild(myLabel)
-
+    self.addChild(card)
   }
   
 }
