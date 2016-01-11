@@ -10,6 +10,8 @@ import SpriteKit
 
 class TRIGameSetupManager: NSObject {
   
+  private var openCards: [TRICard] = []
+  
   private weak var gameScene: TRIGameScene?
   private var cardDeck: [TRICardModel] = []
   
@@ -136,6 +138,43 @@ class TRIGameSetupManager: NSObject {
       CGPoint(x: rightX, y: offsetY)
     )
     
+    self.setupOpenCards()
+    
+  }
+  
+  private func setupOpenCards() {
+    let lastCard = self.rightPeak.last!
+    
+    let yPos = lastCard.position.y - lastCard.size.height / 2
+    var xPos = lastCard.position.x + lastCard.size.width / 2
+    
+    for _ in 0...9 {
+      let openCard = self.createCard(xPos, y: yPos)
+      xPos -= TRIGameSceneLayout.tripeakOffsetBetweenCards * 2
+      xPos -= lastCard.size.width
+      self.openCards.append(openCard)
+    }
+    
+    self.openCards = self.openCards.reverse()
+    
+    self.addCardsToPeak(&self.leftPeak, offset: 0)
+    self.addCardsToPeak(&self.centerPeak, offset: 3)
+    self.addCardsToPeak(&self.rightPeak, offset: 6)
+    
+    print(self.leftPeak)
+    print("\n")
+    print(self.centerPeak)
+    print("\n")
+    print(self.rightPeak)
+    
+  }
+  
+  private func addCardsToPeak(inout peak: [TRICard], offset: Int) {
+    let numberOfCards = 4
+    for i in offset..<offset + numberOfCards {
+      let openCard = openCards[i]
+      peak.append(openCard)
+    }
   }
   
   private func createCard(x: CGFloat, y: CGFloat) -> TRICard {

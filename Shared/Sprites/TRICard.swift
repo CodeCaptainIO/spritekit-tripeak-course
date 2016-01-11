@@ -10,6 +10,10 @@ import SpriteKit
 
 class TRICard: SKNode {
   
+  override var description: String {
+    return "\(self.cardModel!.rank) of \(self.cardModel!.suit)"
+  }
+  
   var cardModel: TRICardModel?
   weak var front: SKSpriteNode?
   var size: CGSize = TRIGameSceneLayout.cardSize
