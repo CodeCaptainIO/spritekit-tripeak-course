@@ -8,7 +8,15 @@
 
 import SpriteKit
 
+protocol TRICardDelegate {
+  func cardStatusChanged(card: TRICard)
+}
+
 class TRICard: SKNode {
+  
+  var manager: TRICardManager?
+  
+  var removed: Bool = false
   
   var open: Bool = false {
     didSet {
@@ -21,6 +29,8 @@ class TRICard: SKNode {
   }
   
   var cardModel: TRICardModel?
+  
+  private var subscribers: [TRICardDelegate] = []
   
   weak var front: SKSpriteNode?
   weak var back: SKSpriteNode?
@@ -75,6 +85,18 @@ class TRICard: SKNode {
   func remove() {
     // Temporary
     self.removeFromParent()
+    self.removed = true
+    self.notifySubscribers()
+  }
+  
+  func notifySubscribers() {
+    for subscriber: TRICardDelegate in self.subscribers {
+      subscriber.cardStatusChanged(self)
+    }
+  }
+  
+  func addSubscriber(subscriber: TRICardDelegate) {
+    self.subscribers.append(subscriber)
   }
   
 }
