@@ -35,7 +35,7 @@ class TRICardManager: NSObject, TRICardDelegate {
   
   private func update() {
     if leftBlockingCard!.removed && rightBlockingCard!.removed {
-      managingCard!.open = true
+      self.managingCard!.flip()
     }
   }
   
