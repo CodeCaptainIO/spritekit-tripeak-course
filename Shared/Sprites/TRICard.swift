@@ -72,4 +72,9 @@ class TRICard: SKNode {
     }
   }
   
+  func remove() {
+    // Temporary
+    self.removeFromParent()
+  }
+  
 }

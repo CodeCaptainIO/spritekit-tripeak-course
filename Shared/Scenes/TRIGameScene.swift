@@ -11,6 +11,7 @@ import SpriteKit
 class TRIGameScene: SKScene {
   
   private var gameSetupManager: TRIGameSetupManager?
+  private var gameFlowManager: TRIGameFlowManager?
   var leftPeak: [TRICard] = []
   var centerPeak: [TRICard] = []
   var rightPeak: [TRICard] = []
@@ -21,6 +22,16 @@ class TRIGameScene: SKScene {
     )
     self.gameSetupManager = gameSetupManager
     self.gameSetupManager!.setup()
+    
+    self.gameFlowManager = TRIGameFlowManager(
+      gameScene: self
+    )
+  }
+  
+  override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    let touch = touches.first
+    let point = touch!.locationInNode(self)
+    self.gameFlowManager!.handleTouchStart(point)
   }
   
 }
