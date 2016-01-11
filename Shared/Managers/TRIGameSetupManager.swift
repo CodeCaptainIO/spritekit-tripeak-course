@@ -150,6 +150,7 @@ class TRIGameSetupManager: NSObject {
     
     for _ in 0...9 {
       let openCard = self.createCard(xPos, y: yPos)
+      openCard.open = true
       xPos -= TRIGameSceneLayout.tripeakOffsetBetweenCards * 2
       xPos -= lastCard.size.width
       self.openCards.append(openCard)

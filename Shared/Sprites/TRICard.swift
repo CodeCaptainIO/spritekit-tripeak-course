@@ -10,12 +10,21 @@ import SpriteKit
 
 class TRICard: SKNode {
   
+  var open: Bool = false {
+    didSet {
+      self.handleOpenClosed()
+    }
+  }
+  
   override var description: String {
     return "\(self.cardModel!.rank) of \(self.cardModel!.suit)"
   }
   
   var cardModel: TRICardModel?
+  
   weak var front: SKSpriteNode?
+  weak var back: SKSpriteNode?
+  
   var size: CGSize = TRIGameSceneLayout.cardSize
   
   override init() {
@@ -33,10 +42,34 @@ class TRICard: SKNode {
     self.addChild(front)
     self.front = front
     
+    let back = SKSpriteNode(
+      imageNamed: self.cardBackWithColor(.Red, type: .Type4)
+    )
+    back.size = size
+    self.addChild(back)
+    self.back = back
+    
+    self.handleOpenClosed()
+    
   }
   
   required init?(coder aDecoder: NSCoder) {
     super.init(coder: aDecoder)
+  }
+  
+  private func cardBackWithColor(
+    color: CardBackColor, type: CardBackType) -> String {
+      return "cardBack_" + color.stringValue() + type.stringValue()
+  }
+  
+  private func handleOpenClosed() {
+    if open {
+      self.front!.hidden = false
+      self.back!.hidden = true
+    } else {
+      self.front!.hidden = true
+      self.back!.hidden = false
+    }
   }
   
 }
