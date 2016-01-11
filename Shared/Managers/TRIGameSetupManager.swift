@@ -12,6 +12,33 @@ class TRIGameSetupManager: NSObject {
   
   private weak var gameScene: TRIGameScene?
   private var cardDeck: [TRICardModel] = []
+  
+  var leftPeak: [TRICard] {
+    get {
+      return self.gameScene!.leftPeak
+    }
+    set {
+      self.gameScene!.leftPeak = newValue
+    }
+  }
+  
+  var centerPeak: [TRICard] {
+    get {
+      return self.gameScene!.centerPeak
+    }
+    set {
+      self.gameScene!.centerPeak = newValue
+    }
+  }
+  
+  var rightPeak: [TRICard] {
+    get {
+      return self.gameScene!.rightPeak
+    }
+    set {
+      self.gameScene!.rightPeak = newValue
+    }
+  }
 
   init(gameScene: TRIGameScene) {
     super.init()
@@ -87,11 +114,26 @@ class TRIGameSetupManager: NSObject {
   }
   
   func setupTripeak() {
-  
-    self.setupPeakWithTopPositionAtPoint(
-      CGPoint(
-        x: self.gameScene!.size.width / 2, y: 300
-      )
+    let offsetY = self.gameScene!.size.height - TRIGameSceneLayout.tripeakOffsetY
+    let centerX = self.gameScene!.size.width / 2
+    
+    let dummyCard = TRICard()
+    var leftX = centerX - dummyCard.size.width * 3
+    leftX -= TRIGameSceneLayout.tripeakOffsetBetweenCards * 6
+    
+    var rightX = centerX + dummyCard.size.width * 3
+    rightX += TRIGameSceneLayout.tripeakOffsetBetweenCards * 6
+    
+    self.centerPeak = self.setupPeakWithTopPositionAtPoint(
+      CGPoint(x: centerX, y: offsetY)
+    )
+    
+    self.leftPeak = self.setupPeakWithTopPositionAtPoint(
+      CGPoint(x: leftX, y: offsetY)
+    )
+    
+    self.rightPeak = self.setupPeakWithTopPositionAtPoint(
+      CGPoint(x: rightX, y: offsetY)
     )
     
   }
