@@ -16,6 +16,8 @@ class TRICard: SKNode {
   
   var manager: TRICardManager?
   
+  var finalPosition: CGPoint?
+  
   var clickable: Bool = true
   var removed: Bool = false {
     didSet {

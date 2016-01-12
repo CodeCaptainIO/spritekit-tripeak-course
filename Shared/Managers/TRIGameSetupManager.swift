@@ -10,6 +10,15 @@ import SpriteKit
 
 class TRIGameSetupManager: NSObject {
   
+  private var cardDeckGraphics: [TRICard] {
+    get {
+      return self.gameScene!.cardDeckGraphics
+    }
+    set {
+      self.gameScene!.cardDeckGraphics = newValue
+    }
+  }
+  
   private var leftOrderedPeakRows: [[TRICard]] = []
   private var centerOrderedPeakRows: [[TRICard]] = []
   private var rightOrderedPeakRows: [[TRICard]] = []
@@ -56,6 +65,50 @@ class TRIGameSetupManager: NSObject {
     self.setupTripeak()
     self.splitPeaksIntoRows()
     self.setupCardManagers()
+    self.deckSetup()
+    self.beginGame()
+  }
+  
+  private func deckSetup() {
+    
+    for i in 0..<self.cardDeck.count {
+      let card = TRICard(cardModel: self.getRandomCard())
+      card.position = CGPoint(
+        x: TRIGameSceneLayout.deckPosition.x,
+        y: TRIGameSceneLayout.deckPosition.y + CGFloat(i) / 5
+      )
+      self.gameScene!.addChild(card)
+      self.cardDeckGraphics.append(card)
+    }
+    
+  }
+  
+  private func beginGame() {
+    let waitAction = SKAction.waitForDuration(0.2)
+    self.gameScene!.runAction(waitAction) { () -> Void in
+      self.openUpCurrentCard()
+    }
+  }
+  
+  private func openUpCurrentCard() {
+    let card = self.cardDeckGraphics.last!
+    let position = CGPoint(
+      x: TRIGameSceneLayout.deckPosition.x + card.size.width + 15,
+      y: TRIGameSceneLayout.deckPosition.y
+    )
+    card.finalPosition = position
+    let animation = SKAction.moveTo(
+      position,
+      duration: 0.2
+    )
+    animation.timingMode = .EaseOut
+    card.runAction(animation) { () -> Void in
+      card.flip()
+      card.zPosition = 2000
+      self.gameScene!.currentCard = card
+    }
+    let cardIndex = self.cardDeckGraphics.indexOf(card)
+    self.cardDeckGraphics.removeAtIndex(cardIndex!)
   }
   
   private func setupCardManagers() {

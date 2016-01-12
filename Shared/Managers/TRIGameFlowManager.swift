@@ -12,6 +12,15 @@ class TRIGameFlowManager: NSObject {
 
   private weak var gameScene: TRIGameScene?
   
+  var currentCard: TRICard? {
+    get {
+      return self.gameScene!.currentCard
+    }
+    set {
+      self.gameScene!.currentCard = newValue
+    }
+  }
+  
   var peakCards: [TRICard] {
     get {
       let peak = leftPeak + centerPeak + rightPeak
@@ -65,6 +74,24 @@ class TRIGameFlowManager: NSObject {
         
         return
         
+      }
+    }
+    let optionalTopCard = self.gameScene!.cardDeckGraphics.last
+    if let topCard = optionalTopCard {
+      if topCard.containsPoint(point) {
+        let position = CGPoint(
+          x: self.currentCard!.finalPosition!.x + TRIGameSceneLayout.openCardOffset,
+          y: self.currentCard!.finalPosition!.y
+        )
+        topCard.finalPosition = position
+        let animation = SKAction.moveTo(position, duration: 0.2)
+        animation.timingMode = .EaseOut
+        topCard.flip()
+        topCard.runAction(animation)
+        topCard.zPosition = self.currentCard!.zPosition + 1
+        self.gameScene!.currentCard = topCard
+        let cardIndex = self.gameScene!.cardDeckGraphics.indexOf(topCard)
+        self.gameScene!.cardDeckGraphics.removeAtIndex(cardIndex!)
       }
     }
   }
