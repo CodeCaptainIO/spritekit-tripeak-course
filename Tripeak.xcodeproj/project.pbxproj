@@ -17,6 +17,7 @@
 		838C57511C4455D800E9C142 /* TRIGameFlowManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838C57501C4455D800E9C142 /* TRIGameFlowManager.swift */; };
 		838C57531C445A1100E9C142 /* TRICardManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838C57521C445A1100E9C142 /* TRICardManager.swift */; };
 		838C57551C44F45E00E9C142 /* TRIHighscoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838C57541C44F45E00E9C142 /* TRIHighscoreManager.swift */; };
+		838C57571C44FB9500E9C142 /* TRIHighscoreElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838C57561C44FB9500E9C142 /* TRIHighscoreElement.swift */; };
 		83C077D21C43FE2600CE5AE6 /* Birdy_Note5.wav in Resources */ = {isa = PBXBuildFile; fileRef = 83C077CE1C43FE2600CE5AE6 /* Birdy_Note5.wav */; };
 		83C077D31C43FE2600CE5AE6 /* Birdy_Notification1.wav in Resources */ = {isa = PBXBuildFile; fileRef = 83C077CF1C43FE2600CE5AE6 /* Birdy_Notification1.wav */; };
 		83C077D41C43FE2600CE5AE6 /* cardSlide1.wav in Resources */ = {isa = PBXBuildFile; fileRef = 83C077D01C43FE2600CE5AE6 /* cardSlide1.wav */; };
@@ -79,6 +80,7 @@
 		838C57501C4455D800E9C142 /* TRIGameFlowManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TRIGameFlowManager.swift; path = ../../../../../../CodeCaptain/Documents/Projects/Tripeak/Shared/Managers/TRIGameFlowManager.swift; sourceTree = "<group>"; };
 		838C57521C445A1100E9C142 /* TRICardManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TRICardManager.swift; path = ../../../../../../CodeCaptain/Documents/Projects/Tripeak/Shared/Managers/TRICardManager.swift; sourceTree = "<group>"; };
 		838C57541C44F45E00E9C142 /* TRIHighscoreManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TRIHighscoreManager.swift; path = ../../../../../../CodeCaptain/Documents/Projects/Tripeak/Shared/Managers/TRIHighscoreManager.swift; sourceTree = "<group>"; };
+		838C57561C44FB9500E9C142 /* TRIHighscoreElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TRIHighscoreElement.swift; path = ../../../../../../CodeCaptain/Documents/Projects/Tripeak/Shared/Sprites/TRIHighscoreElement.swift; sourceTree = "<group>"; };
 		83C077CE1C43FE2600CE5AE6 /* Birdy_Note5.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Birdy_Note5.wav; sourceTree = "<group>"; };
 		83C077CF1C43FE2600CE5AE6 /* Birdy_Notification1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Birdy_Notification1.wav; sourceTree = "<group>"; };
 		83C077D01C43FE2600CE5AE6 /* cardSlide1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = cardSlide1.wav; sourceTree = "<group>"; };
@@ -322,6 +324,7 @@
 				83D8E11C1C43F34E003E84F3 /* Buttons */,
 				83D8E1201C43F34E003E84F3 /* Overlays */,
 				838C57481C442D8000E9C142 /* TRICard.swift */,
+				838C57561C44FB9500E9C142 /* TRIHighscoreElement.swift */,
 			);
 			path = Sprites;
 			sourceTree = "<group>";
@@ -604,6 +607,7 @@
 				83D8E1291C43F34E003E84F3 /* TRIBaseButton.swift in Sources */,
 				83C078271C44044300CE5AE6 /* ALContext.m in Sources */,
 				83D8E0BD1C43F167003E84F3 /* TRIDevices.swift in Sources */,
+				838C57571C44FB9500E9C142 /* TRIHighscoreElement.swift in Sources */,
 				838C57511C4455D800E9C142 /* TRIGameFlowManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

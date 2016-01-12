@@ -31,6 +31,31 @@ class TRIGameScene: SKScene {
     self.gameFlowManager = TRIGameFlowManager(
       gameScene: self
     )
+    
+    self.setupInterface()
+    
+  }
+  
+  private func setupInterface() {
+    
+    let hudBG = SKSpriteNode(
+      color: SKColor.blackColor().colorWithAlphaComponent(0.2),
+      size: CGSize(
+        width: self.size.width,
+        height: TRIGameSceneLayout.hudHeight
+      )
+    )
+    hudBG.position = CGPoint(
+      x: self.size.width / 2,
+      y: self.size.height - hudBG.size.height / 2
+    )
+    self.addChild(hudBG)
+    
+    let highscoreElement = TRIHighscoreElement()
+    highscoreElement.position = hudBG.position
+    TRIHighscoreManager.instance.addSubscriber(highscoreElement)
+    self.addChild(highscoreElement)
+    
   }
   
   override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
