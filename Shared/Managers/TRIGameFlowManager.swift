@@ -66,11 +66,27 @@ class TRIGameFlowManager: NSObject {
     for card: TRICard in self.peakCards {
       if card.containsPoint(point) && card.clickable {
         
-        card.remove()
-        
-        self.removeCardFromPeak(&self.leftPeak, card: card)
-        self.removeCardFromPeak(&self.centerPeak, card: card)
-        self.removeCardFromPeak(&self.rightPeak, card: card)
+        if self.validateCardAgainstCurrentCard(card.cardModel!) {
+          card.remove()
+          
+          let position = CGPoint(
+            x: self.currentCard!.finalPosition!.x + TRIGameSceneLayout.openCardOffset,
+            y: self.currentCard!.finalPosition!.y
+          )
+          card.finalPosition = position
+          
+          let animation = SKAction.moveTo(position, duration: 0.2)
+          animation.timingMode = .EaseOut
+          card.runAction(animation)
+          card.zPosition = self.currentCard!.zPosition + 1
+          
+          self.gameScene!.currentCard = card
+          
+          self.removeCardFromPeak(&self.leftPeak, card: card)
+          self.removeCardFromPeak(&self.centerPeak, card: card)
+          self.removeCardFromPeak(&self.rightPeak, card: card)
+          
+        }
         
         return
         
@@ -94,6 +110,31 @@ class TRIGameFlowManager: NSObject {
         self.gameScene!.cardDeckGraphics.removeAtIndex(cardIndex!)
       }
     }
+  }
+  
+  private func validateCardAgainstCurrentCard(cardModel: TRICardModel) -> Bool {
+    
+    if cardModel.rank.rawValue == currentCard!.cardModel!.rank.rawValue + 1 {
+      return true
+    }
+    
+    if cardModel.rank.rawValue == currentCard!.cardModel!.rank.rawValue - 1 {
+      return true
+    }
+    
+    if currentCard!.cardModel!.rank == .Ace {
+      if cardModel.rank == .King {
+        return true
+      }
+    }
+    
+    if currentCard!.cardModel!.rank == .King {
+      if cardModel.rank == .Ace {
+        return true
+      }
+    }
+    
+    return false
   }
   
   private func removeCardFromPeak(inout peak: [TRICard], card: TRICard) {

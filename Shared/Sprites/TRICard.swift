@@ -94,8 +94,6 @@ class TRICard: SKNode {
   }
   
   func remove() {
-    // Temporary
-    self.removeFromParent()
     self.removed = true
     self.notifySubscribers()
   }
