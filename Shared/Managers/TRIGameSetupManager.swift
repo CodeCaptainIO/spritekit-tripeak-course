@@ -105,7 +105,7 @@ class TRIGameSetupManager: NSObject {
     card.runAction(animation) { () -> Void in
       card.flip()
       card.zPosition = 2000
-      self.gameScene!.currentCard = card
+      self.gameScene!.startGameWithCurrentCard(card)
     }
     let cardIndex = self.cardDeckGraphics.indexOf(card)
     self.cardDeckGraphics.removeAtIndex(cardIndex!)

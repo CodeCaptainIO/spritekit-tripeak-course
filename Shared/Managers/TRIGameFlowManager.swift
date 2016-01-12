@@ -99,6 +99,7 @@ class TRIGameFlowManager: NSObject {
           self.removeCardFromPeak(&self.rightPeak, card: card)
           
           self.checkPeaks()
+          self.checkAvailableMoves()
           
         }
         
@@ -122,6 +123,7 @@ class TRIGameFlowManager: NSObject {
         self.gameScene!.currentCard = topCard
         let cardIndex = self.gameScene!.cardDeckGraphics.indexOf(topCard)
         self.gameScene!.cardDeckGraphics.removeAtIndex(cardIndex!)
+        self.checkAvailableMoves()
       }
     }
   }
@@ -147,8 +149,45 @@ class TRIGameFlowManager: NSObject {
         TRIHighscoreManager.instance.gameClearedWithRemainingCards(
           self.gameScene!.cardDeckGraphics.count
         )
+        self.gameScene?.gameOver()
     }
     
+  }
+  
+  private func checkAvailableMoves() {
+    if self.gameScene!.cardDeckGraphics.count == 0 {
+      
+      var canContinue = false
+      
+      var arr = self.peakCards
+      arr = arr.filter({ (card: TRICard) -> Bool in
+        
+        if card.clickable {
+          return true
+        }
+        
+        return false
+        
+      })
+      
+      if arr.count == 0 {
+        return
+      }
+      
+      for card: TRICard in arr {
+        let validMove = self.validateCardAgainstCurrentCard(card.cardModel!)
+        if validMove {
+          canContinue = true
+          break
+        }
+      }
+      
+      if !canContinue {
+        print("No valid moves left")
+        self.gameScene!.gameOver()
+      }
+      
+    }
   }
   
   private func validateCardAgainstCurrentCard(cardModel: TRICardModel) -> Bool {

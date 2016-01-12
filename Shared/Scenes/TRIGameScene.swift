@@ -17,6 +17,7 @@ class TRIGameScene: SKScene {
   var rightPeak: [TRICard] = []
   var cardDeckGraphics: [TRICard] = []
   weak var currentCard: TRICard?
+  var state: TRIGameState = .WillStart
   
   override func didMoveToView(view: SKView) {
     
@@ -58,10 +59,32 @@ class TRIGameScene: SKScene {
     
   }
   
+  func startGameWithCurrentCard(card: TRICard) {
+    self.currentCard = card
+    self.state = .Started
+  }
+  
+  func gameOver() {
+    print("Game Over")
+    self.backgroundColor = SKColor.purpleColor()
+    state = .Ended
+  }
+  
   override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
     let touch = touches.first
     let point = touch!.locationInNode(self)
-    self.gameFlowManager!.handleTouchStart(point)
+    if state == .Started {
+      self.gameFlowManager!.handleTouchStart(point)
+      return
+    }
+    if state == .Ended {
+      let gameScene = TRIGameScene(size: self.size)
+      self.view?.presentScene(
+        gameScene,
+        transition: SKTransition.fadeWithDuration(1.0)
+      )
+      return
+    }
   }
   
   override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
