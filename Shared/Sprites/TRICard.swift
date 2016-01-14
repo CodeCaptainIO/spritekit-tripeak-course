@@ -96,6 +96,7 @@ class TRICard: SKNode {
   func remove() {
     self.removed = true
     self.notifySubscribers()
+    TRISoundManager.instance.playSound(.Click)
   }
   
   func notifySubscribers() {
@@ -134,6 +135,7 @@ class TRICard: SKNode {
     )
     self.back!.runAction(groupAction, completion: { () -> Void in
       self.open = true
+      TRISoundManager.instance.playSound(.CardOpen)
       self.updateAnimationWithScale(1.25, element: self.front!)
     })
     

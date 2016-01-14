@@ -11,4 +11,7 @@ enum TRISounds: String {
   case PeakClear = "Birdy_Notification1.wav"
   case CardOpen = "cardSlide8.wav"
   case CardSlide = "cardSlide1.wav"
+  static let allValues: [TRISounds] = [
+    .Click, .PeakClear, .CardOpen, .CardSlide
+  ]
 }
