@@ -69,6 +69,7 @@
 		83E7A8291C47E2AB00D176CD /* TRIMenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83E7A8281C47E2AB00D176CD /* TRIMenuScene.swift */; };
 		83E7A82B1C47E33C00D176CD /* TRIUnderlinedLabelNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83E7A82A1C47E33C00D176CD /* TRIUnderlinedLabelNode.swift */; };
 		83E7A82D1C47E50B00D176CD /* TRIMenuSceneLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83E7A82C1C47E50B00D176CD /* TRIMenuSceneLayout.swift */; };
+		83E7A82F1C47EB8100D176CD /* TRIGameConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83E7A82E1C47EB8100D176CD /* TRIGameConfig.swift */; };
 		83F641E41C34360E00CCABB7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F641E31C34360E00CCABB7 /* AppDelegate.swift */; };
 		83F641EA1C34360E00CCABB7 /* IOSGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F641E91C34360E00CCABB7 /* IOSGameViewController.swift */; };
 		83F641ED1C34360E00CCABB7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83F641EB1C34360E00CCABB7 /* Main.storyboard */; };
@@ -176,6 +177,7 @@
 		83E7A8281C47E2AB00D176CD /* TRIMenuScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TRIMenuScene.swift; path = ../../../../../../CodeCaptain/Documents/Projects/Tripeak/Shared/Scenes/TRIMenuScene.swift; sourceTree = "<group>"; };
 		83E7A82A1C47E33C00D176CD /* TRIUnderlinedLabelNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TRIUnderlinedLabelNode.swift; path = ../../../../../../CodeCaptain/Documents/Projects/Tripeak/Shared/Sprites/TRIUnderlinedLabelNode.swift; sourceTree = "<group>"; };
 		83E7A82C1C47E50B00D176CD /* TRIMenuSceneLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TRIMenuSceneLayout.swift; path = ../../../../../../CodeCaptain/Documents/Projects/Tripeak/Shared/Layouts/TRIMenuSceneLayout.swift; sourceTree = "<group>"; };
+		83E7A82E1C47EB8100D176CD /* TRIGameConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TRIGameConfig.swift; path = ../../../../../../CodeCaptain/Documents/Projects/Tripeak/Shared/Models/TRIGameConfig.swift; sourceTree = "<group>"; };
 		83F641E01C34360E00CCABB7 /* Tripeak_iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tripeak_iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		83F641E31C34360E00CCABB7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		83F641E91C34360E00CCABB7 /* IOSGameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IOSGameViewController.swift; sourceTree = "<group>"; };
@@ -462,6 +464,7 @@
 			isa = PBXGroup;
 			children = (
 				838C57461C442D0800E9C142 /* TRICardModel.swift */,
+				83E7A82E1C47EB8100D176CD /* TRIGameConfig.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -627,6 +630,7 @@
 				83C0782C1C44044300CE5AE6 /* ALWrapper.m in Sources */,
 				83D8E0C01C43F167003E84F3 /* TRIKeyCodes.swift in Sources */,
 				83F641E41C34360E00CCABB7 /* AppDelegate.swift in Sources */,
+				83E7A82F1C47EB8100D176CD /* TRIGameConfig.swift in Sources */,
 				83C0782F1C44044300CE5AE6 /* OALSuspendHandler.m in Sources */,
 				83C078321C44044300CE5AE6 /* NSMutableArray+WeakReferences.m in Sources */,
 				83C0781B1C44044200CE5AE6 /* OALAction.m in Sources */,

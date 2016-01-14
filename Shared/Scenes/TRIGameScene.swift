@@ -20,6 +20,12 @@ class TRIGameScene: SKScene {
   var cardDeckGraphics: [TRICard] = []
   weak var currentCard: TRICard?
   var state: TRIGameState = .WillStart
+  private var config: TRIGameConfig?
+  
+  convenience init(size: CGSize, config: TRIGameConfig) {
+    self.init(size: size)
+    self.config = config
+  }
   
   override func didMoveToView(view: SKView) {
     
@@ -103,9 +109,9 @@ class TRIGameScene: SKScene {
       return
     }
     if state == .Ended {
-      let gameScene = TRIGameScene(size: self.size)
+      let scene = TRIMenuScene(size: self.size)
       self.view?.presentScene(
-        gameScene,
+        scene,
         transition: SKTransition.fadeWithDuration(1.0)
       )
       return
