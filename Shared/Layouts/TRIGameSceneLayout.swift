@@ -24,4 +24,44 @@ class TRIGameSceneLayout: TRIBaseGameLayout {
     height: 104 * cardSizeMultiplier
   )
   
+  override class func setupIphone5() {
+    deckPosition = CGPoint(x: 40, y: 45)
+    cardSizeMultiplier = 0.65
+    tripeakOffsetY = 55
+    tripeakOffsetBetweenCards = 2.0
+    openCardOffset = 8
+    hudHeight = 40
+    timerHeight = 4
+  }
+  
+  override class func setupIphone6p() {
+    deckPosition = CGPoint(x: 50, y: 60)
+    cardSizeMultiplier = 0.8
+    tripeakOffsetY = 75
+    tripeakOffsetBetweenCards = 3.0
+    openCardOffset = 10
+    hudHeight = 40
+    timerHeight = 8
+  }
+  
+  override class func setupIphone4OrLess() {
+    deckPosition = CGPoint(x: 40, y: 45)
+    cardSizeMultiplier = 0.55
+    tripeakOffsetY = 60
+    hudHeight = 40
+    timerHeight = 5
+    openCardOffset = 6
+    tripeakOffsetBetweenCards = 1.0
+  }
+  
+  override class func setupIpad() {
+    deckPosition = CGPoint(x: 100, y: 100)
+    cardSizeMultiplier = 1.2
+    tripeakOffsetY = 140
+    tripeakOffsetBetweenCards = 2.0
+    openCardOffset = 10
+    hudHeight = 50
+    timerHeight = 10
+  }
+  
 }
