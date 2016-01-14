@@ -64,9 +64,59 @@ class TRIGameSetupManager: NSObject {
     self.createDeck()
     self.setupTripeak()
     self.splitPeaksIntoRows()
+    let animatedOrder = self.prepareAnimatedDealing()
+    self.animateWithOrderedCards(animatedOrder)
     self.setupCardManagers()
     self.deckSetup()
-    self.beginGame()
+  }
+  
+  private func animateWithOrderedCards(cards: [TRICard]) {
+    
+    var i: Int = 1
+    var zpos: CGFloat = 1000
+    for card: TRICard in cards {
+      
+      let last: Bool = i == cards.count - 1
+      
+      let delayAction = SKAction.waitForDuration(Double(i) * 0.05)
+      let animatingAction = SKAction.moveTo(
+        card.finalPosition!,
+        duration: 0.4
+      )
+      animatingAction.timingMode = .EaseOut
+      
+      let secondDelayAction = SKAction.waitForDuration(0.1)
+      
+      let sequence = SKAction.sequence(
+        [
+          delayAction, animatingAction, secondDelayAction
+        ]
+      )
+      
+      let zposDelay = SKAction.waitForDuration(Double(i) * 0.055)
+      card.runAction(zposDelay, completion: { () -> Void in
+        card.zPosition = zpos++
+      })
+      
+      card.runAction(sequence, completion: { () -> Void in
+        
+        if self.openCards.contains(card) {
+          card.flip()
+        }
+        
+        if last {
+          let delayAction = SKAction.waitForDuration(0.25)
+          self.gameScene!.runAction(delayAction, completion: { () -> Void in
+            self.openUpCurrentCard()
+          })
+        }
+        
+      })
+      
+      i++
+      
+    }
+    
   }
   
   private func deckSetup() {
@@ -81,13 +131,6 @@ class TRIGameSetupManager: NSObject {
       self.cardDeckGraphics.append(card)
     }
     
-  }
-  
-  private func beginGame() {
-    let waitAction = SKAction.waitForDuration(0.2)
-    self.gameScene!.runAction(waitAction) { () -> Void in
-      self.openUpCurrentCard()
-    }
   }
   
   private func openUpCurrentCard() {
@@ -109,6 +152,54 @@ class TRIGameSetupManager: NSObject {
     }
     let cardIndex = self.cardDeckGraphics.indexOf(card)
     self.cardDeckGraphics.removeAtIndex(cardIndex!)
+  }
+  
+  private func prepareAnimatedDealing() -> [TRICard] {
+    
+    var animatingCards: [TRICard] = []
+    
+    var leftOrderedPeakRows = self.leftOrderedPeakRows
+    leftOrderedPeakRows.popLast()
+    
+    var centerOrderedPeakRows = self.centerOrderedPeakRows
+    centerOrderedPeakRows.popLast()
+    
+    var rightOrderedPeakRows = self.rightOrderedPeakRows
+    rightOrderedPeakRows.popLast()
+    
+    for i in 0..<leftOrderedPeakRows.count {
+      let leftRow: [TRICard] = leftOrderedPeakRows[i]
+      for j in 0..<leftRow.count {
+        animatingCards.append(leftRow[j])
+      }
+      
+      let centerRow: [TRICard] = centerOrderedPeakRows[i]
+      for j in 0..<centerRow.count {
+        animatingCards.append(centerRow[j])
+      }
+      
+      let rightRow: [TRICard] = rightOrderedPeakRows[i]
+      for j in 0..<rightRow.count {
+        animatingCards.append(rightRow[j])
+      }
+    }
+    
+    for card: TRICard in self.openCards {
+      animatingCards.append(card)
+    }
+    
+    var zpos: CGFloat = 500
+    for card: TRICard in animatingCards {
+      card.finalPosition = card.position
+      card.position = CGPoint(
+        x: TRIGameSceneLayout.deckPosition.x,
+        y: TRIGameSceneLayout.deckPosition.y + 5
+      )
+      card.zPosition = zpos--
+    }
+    
+    return animatingCards
+    
   }
   
   private func setupCardManagers() {
@@ -270,7 +361,6 @@ class TRIGameSetupManager: NSObject {
     
     for _ in 0...9 {
       let openCard = self.createCard(xPos, y: yPos)
-      openCard.open = true
       xPos -= TRIGameSceneLayout.tripeakOffsetBetweenCards * 2
       xPos -= lastCard.size.width
       self.openCards.append(openCard)
