@@ -15,4 +15,6 @@ class TRIMenuSceneLayout: NSObject {
   static var titleYOffset: CGFloat = 60.0
   static var titleBorderHeight: CGFloat = 5.0
   
+  static var buttonFontSize: CGFloat = 24.0
+  
 }

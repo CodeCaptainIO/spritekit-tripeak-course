@@ -11,6 +11,8 @@ import SpriteKit
 class TRIMenuScene: SKScene {
 
   private weak var background: TRIBackground?
+  private weak var btnTimed: TRIWireButton?
+  private weak var btnRelaxed: TRIWireButton?
   
   override func didMoveToView(view: SKView) {
     
@@ -19,9 +21,61 @@ class TRIMenuScene: SKScene {
     
   }
   
+  private func setupButtons() {
+    
+    let size = CGSize(
+      width: self.size.width * 0.3,
+      height: self.size.width * 0.15
+    )
+    
+    let btnTimed = TRIWireButton(
+      color: SKColor.whiteColor(),
+      size: size,
+      title: "2-Minute Time Limit",
+      image: "clock"
+    )
+    self.addChild(btnTimed)
+    btnTimed.position = CGPoint(
+      x: self.size.width / 2 - size.width / 2 - 30,
+      y: self.size.height / 2
+    )
+    btnTimed.addTarget(self, selector: "timedModeGame")
+    btnTimed.userInteractionEnabled = true
+    btnTimed.label.fontSize = TRIMenuSceneLayout.buttonFontSize
+    btnTimed.updateLabelPosition()
+    self.btnTimed = btnTimed
+    
+    let btnRelaxed = TRIWireButton(
+      color: SKColor.whiteColor(),
+      size: size,
+      title: "No Time Limit",
+      image: "infinity"
+    )
+    self.addChild(btnRelaxed)
+    btnRelaxed.position = CGPoint(
+      x: self.size.width / 2 + size.width / 2 + 30,
+      y: self.size.height / 2
+    )
+    btnRelaxed.addTarget(self, selector: "relaxedModeGame")
+    btnRelaxed.userInteractionEnabled = true
+    btnRelaxed.label.fontSize = TRIMenuSceneLayout.buttonFontSize
+    btnRelaxed.updateLabelPosition()
+    self.btnRelaxed = btnRelaxed
+    
+  }
+  
+  func relaxedModeGame() {
+    print("Relaxed mode")
+  }
+  
+  func timedModeGame() {
+    print("Timed mode")
+  }
+  
   private func setupInterface() {
     
     self.setupLogo()
+    self.setupButtons()
     
   }
   
