@@ -10,6 +10,7 @@ import SpriteKit
 
 class TRIGameScene: SKScene {
   
+  private weak var background: TRIBackground?
   private var gameOverOverlay: TRIGameOverOverlay?
   private var gameSetupManager: TRIGameSetupManager?
   private var gameFlowManager: TRIGameFlowManager?
@@ -34,9 +35,16 @@ class TRIGameScene: SKScene {
       gameScene: self
     )
     
+    self.setupBackground()
     self.setupInterface()
     self.setupOverlays()
     
+  }
+  
+  private func setupBackground() {
+    let background = TRIBackground(size: self.size)
+    self.addChild(background)
+    self.background = background
   }
   
   private func setupOverlays() {
