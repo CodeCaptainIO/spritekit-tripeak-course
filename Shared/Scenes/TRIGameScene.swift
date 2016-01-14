@@ -23,6 +23,8 @@ class TRIGameScene: SKScene {
   private var config: TRIGameConfig?
   private weak var timerBar: TRITimer?
   private var currentTime: CGFloat = 0.0
+  private weak var btnPause: TRISimpleButton?
+  private weak var pauseOverlay: TRIPauseOverlay?
   
   convenience init(size: CGSize, config: TRIGameConfig) {
     self.init(size: size)
@@ -62,6 +64,15 @@ class TRIGameScene: SKScene {
     overlay.zPosition = 99999
     self.addChild(overlay)
     self.gameOverOverlay = overlay
+    
+    let pauseOverlay = TRIPauseOverlay(
+      withSize: self.size
+    )
+    pauseOverlay.zPosition = 99999
+    pauseOverlay.btnResume?.addTarget(self, selector: "resumeGame")
+    pauseOverlay.btnMenu?.addTarget(self, selector: "goToMenu")
+    self.addChild(pauseOverlay)
+    self.pauseOverlay = pauseOverlay
   }
   
   private func startTimer() {
@@ -126,6 +137,47 @@ class TRIGameScene: SKScene {
     TRIHighscoreManager.instance.addSubscriber(highscoreElement)
     self.addChild(highscoreElement)
     
+    let size = CGSize(
+      width: hudBG.size.height,
+      height: hudBG.size.height
+    )
+    let btnPause = TRISimpleButton(
+      image: "pause",
+      size: size
+    )
+    btnPause.position = CGPoint(
+      x: btnPause.size.width * 0.5,
+      y: hudBG.position.y
+    )
+    btnPause.userInteractionEnabled = true
+    btnPause.addTarget(self, selector: "pauseGame")
+    self.addChild(btnPause)
+    self.btnPause = btnPause
+    
+  }
+  
+  func resumeGame() {
+    if self.state == .Paused {
+      self.state = .Started
+      self.startTimer()
+      self.pauseOverlay?.hide(nil)
+    }
+  }
+  
+  func goToMenu() {
+    let scene = TRIMenuScene(size: self.size)
+    self.view?.presentScene(
+      scene,
+      transition: SKTransition.fadeWithDuration(1.0)
+    )
+  }
+  
+  func pauseGame() {
+    if self.state == .Started {
+      self.state = .Paused
+      self.stopTimer()
+      self.pauseOverlay?.showPauseScreen(nil)
+    }
   }
   
   func startGameWithCurrentCard(card: TRICard) {
@@ -154,11 +206,7 @@ class TRIGameScene: SKScene {
       return
     }
     if state == .Ended {
-      let scene = TRIMenuScene(size: self.size)
-      self.view?.presentScene(
-        scene,
-        transition: SKTransition.fadeWithDuration(1.0)
-      )
+      self.goToMenu()
       return
     }
   }
