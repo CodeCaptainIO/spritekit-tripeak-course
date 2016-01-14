@@ -45,4 +45,20 @@ class TRIBackground: SKSpriteNode {
     fatalError("init(coder:) has not been implemented")
   }
   
+  func updateBackgroundWithPercentage(percentageX: CGFloat, percentageY: CGFloat) {
+    let offset: CGFloat = 10
+    let newPosition = CGPoint(
+      x: self.size.width / 2 + offset * percentageX,
+      y: self.size.height / 2 + offset * percentageY
+    )
+    self.parallaxBackground.position = newPosition
+  }
+  
+  func updateMotion(xVal: Double, yVal: Double) {
+    self.updateBackgroundWithPercentage(
+      CGFloat(xVal * 5),
+      percentageY: CGFloat(yVal * 5)
+    )
+  }
+  
 }
