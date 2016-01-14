@@ -72,6 +72,8 @@
 		83E7A82F1C47EB8100D176CD /* TRIGameConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83E7A82E1C47EB8100D176CD /* TRIGameConfig.swift */; };
 		83E7A8311C47EDC600D176CD /* TRITimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83E7A8301C47EDC600D176CD /* TRITimer.swift */; };
 		83E7A8331C47F79900D176CD /* TRIPauseOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83E7A8321C47F79900D176CD /* TRIPauseOverlay.swift */; };
+		83E7A8351C48010800D176CD /* SKScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83E7A8341C48010800D176CD /* SKScene.swift */; };
+		83E7A8371C48044C00D176CD /* TRILayoutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83E7A8361C48044C00D176CD /* TRILayoutManager.swift */; };
 		83F641E41C34360E00CCABB7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F641E31C34360E00CCABB7 /* AppDelegate.swift */; };
 		83F641EA1C34360E00CCABB7 /* IOSGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F641E91C34360E00CCABB7 /* IOSGameViewController.swift */; };
 		83F641ED1C34360E00CCABB7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83F641EB1C34360E00CCABB7 /* Main.storyboard */; };
@@ -182,6 +184,8 @@
 		83E7A82E1C47EB8100D176CD /* TRIGameConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TRIGameConfig.swift; path = ../../../../../../CodeCaptain/Documents/Projects/Tripeak/Shared/Models/TRIGameConfig.swift; sourceTree = "<group>"; };
 		83E7A8301C47EDC600D176CD /* TRITimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TRITimer.swift; path = ../../../../../../CodeCaptain/Documents/Projects/Tripeak/Shared/Sprites/TRITimer.swift; sourceTree = "<group>"; };
 		83E7A8321C47F79900D176CD /* TRIPauseOverlay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TRIPauseOverlay.swift; path = ../../../../../../../CodeCaptain/Documents/Projects/Tripeak/Shared/Sprites/Overlays/TRIPauseOverlay.swift; sourceTree = "<group>"; };
+		83E7A8341C48010800D176CD /* SKScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SKScene.swift; path = ../../../../../../CodeCaptain/Documents/Projects/Tripeak/Shared/Extensions/SKScene.swift; sourceTree = "<group>"; };
+		83E7A8361C48044C00D176CD /* TRILayoutManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TRILayoutManager.swift; path = ../../../../../../CodeCaptain/Documents/Projects/Tripeak/Shared/Managers/TRILayoutManager.swift; sourceTree = "<group>"; };
 		83F641E01C34360E00CCABB7 /* Tripeak_iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tripeak_iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		83F641E31C34360E00CCABB7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		83F641E91C34360E00CCABB7 /* IOSGameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IOSGameViewController.swift; sourceTree = "<group>"; };
@@ -450,6 +454,7 @@
 		83F642041C34397200CCABB7 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				83E7A8341C48010800D176CD /* SKScene.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -462,6 +467,7 @@
 				838C57521C445A1100E9C142 /* TRICardManager.swift */,
 				838C57541C44F45E00E9C142 /* TRIHighscoreManager.swift */,
 				83E7A8261C47CBEB00D176CD /* TRISoundManager.swift */,
+				83E7A8361C48044C00D176CD /* TRILayoutManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -616,6 +622,7 @@
 				83C078311C44044300CE5AE6 /* mach_timing.c in Sources */,
 				83C078331C44044300CE5AE6 /* NSMutableDictionary+WeakReferences.m in Sources */,
 				838C57591C45018500E9C142 /* TRIGameState.swift in Sources */,
+				83E7A8371C48044C00D176CD /* TRILayoutManager.swift in Sources */,
 				83D8E0E01C43F217003E84F3 /* TRIWeakContainer.swift in Sources */,
 				83D8E0F01C43F2D0003E84F3 /* TRIBaseGameLayout.swift in Sources */,
 				838C57451C442C6000E9C142 /* TRICardRank.swift in Sources */,
@@ -648,6 +655,7 @@
 				83D8E12B1C43F34E003E84F3 /* TRIWireButton.swift in Sources */,
 				83D8E0BF1C43F167003E84F3 /* TRIFonts.swift in Sources */,
 				83D8E1291C43F34E003E84F3 /* TRIBaseButton.swift in Sources */,
+				83E7A8351C48010800D176CD /* SKScene.swift in Sources */,
 				83C078271C44044300CE5AE6 /* ALContext.m in Sources */,
 				83E7A8311C47EDC600D176CD /* TRITimer.swift in Sources */,
 				83D8E0BD1C43F167003E84F3 /* TRIDevices.swift in Sources */,

@@ -42,6 +42,8 @@ class IOSGameViewController: UIViewController, TRIParallaxEffectDelegate {
     self.view.addMotionEffect(horizontalMotionEffect)
     self.view.addMotionEffect(verticalMotionEffect)
     
+    TRILayoutManager.setupGameLayout()
+    
   }
   
   func keyPathsAndRelativeValuesForViewerOffset(values: [String : AnyObject]?) {
