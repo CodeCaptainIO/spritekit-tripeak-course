@@ -21,6 +21,8 @@ class TRIGameScene: SKScene {
   weak var currentCard: TRICard?
   var state: TRIGameState = .WillStart
   private var config: TRIGameConfig?
+  private weak var timerBar: TRITimer?
+  private var currentTime: CGFloat = 0.0
   
   convenience init(size: CGSize, config: TRIGameConfig) {
     self.init(size: size)
@@ -62,7 +64,45 @@ class TRIGameScene: SKScene {
     self.gameOverOverlay = overlay
   }
   
+  private func startTimer() {
+    if self.config!.hasTimer {
+      let waitAction = SKAction.waitForDuration(0.1)
+      let executeAction = SKAction.runBlock({ () -> Void in
+        self.currentTime += 0.1
+        let percentage = self.currentTime / self.config!.timerSeconds
+        TRIHighscoreManager.instance.inverseMultiplier = percentage
+        self.timerBar?.updateWithPercentage(percentage)
+        if percentage >= 1 {
+          self.gameOver("Time's up!")
+          self.stopTimer()
+        }
+      })
+      let sequence = SKAction.sequence([waitAction, executeAction])
+      let timerAction = SKAction.repeatActionForever(sequence)
+      self.runAction(timerAction, withKey: "timer")
+    }
+  }
+  
+  private func stopTimer() {
+    self.removeActionForKey("timer")
+  }
+  
   private func setupInterface() {
+    
+    if self.config!.hasTimer {
+      let timerBar = TRITimer(
+        size: CGSize(
+          width: self.size.width,
+          height: TRIGameSceneLayout.timerHeight
+        )
+      )
+      self.addChild(timerBar)
+      timerBar.position = CGPoint(
+        x: 0,
+        y: self.size.height
+      )
+      self.timerBar = timerBar
+    }
     
     let hudBG = SKSpriteNode(
       color: SKColor.blackColor().colorWithAlphaComponent(0.2),
@@ -71,9 +111,13 @@ class TRIGameScene: SKScene {
         height: TRIGameSceneLayout.hudHeight
       )
     )
+    var yPos = self.size.height - hudBG.size.height / 2
+    if let timerBar = self.timerBar {
+      yPos -= timerBar.size.height
+    }
     hudBG.position = CGPoint(
       x: self.size.width / 2,
-      y: self.size.height - hudBG.size.height / 2
+      y: yPos
     )
     self.addChild(hudBG)
     
@@ -87,6 +131,7 @@ class TRIGameScene: SKScene {
   func startGameWithCurrentCard(card: TRICard) {
     self.currentCard = card
     self.state = .Started
+    self.startTimer()
   }
   
   func gameOver(message: String) {
